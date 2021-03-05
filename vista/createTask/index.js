@@ -13,7 +13,7 @@ import {
   TouchableOpacity,
   Button
 } from 'react-native';
-
+import VectorIcons from 'react-native-vector-icons/Entypo';
 import {
   Header,
   LearnMoreLinks,
@@ -21,6 +21,13 @@ import {
   DebugInstructions,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
+
+//error "the development server returned response error code 500"
+//   
+//import Request from '../../scr/server/request.js';
+//import {Create_Tasks} from '../../scr/server/endpoints.js';
+//import { response } from 'express';
+
 //const Tab = createBottomTabNavigator()
 class Navega extends React.Component {
   constructor(props) {
@@ -33,12 +40,20 @@ class Navega extends React.Component {
     };
   }
   render() {
-    const { name, description, date, hour } = this.state;
+      
+    const { name, description, date, hour} = this.state;
+    /*var req = new Request ('post', Create_Tasks, this.state, (response) => {
+            if(response.status == 200){
+                  alert('Usuario Registrado :D');
+            }
+    });
+    req.start();*/
     return(
         <View style={styles.container}>
+            <VectorIcons name= "layers" size={24} color="green"/>
           <Text style={styles.titulo}>Nombre de Tarea Nueva</Text>
           <TextInput style={styles.txt} value={name} onChangeText={val => this.setState({ name: val })}/>
-          <Text style={styles.titulo}>Descripsion de Tarea</Text>
+          <Text style={styles.titulo}>Descripcion de Tarea</Text>
           <TextInput style={styles.txt} value={description} onChangeText={val => this.setState({ description: val })}/>
           <Text style={styles.titulo}>Fecha de creacion</Text>
           <TextInput style={styles.txt} value={date} onChangeText={val => this.setState({ date: val })}/>
@@ -46,18 +61,13 @@ class Navega extends React.Component {
           <TextInput style={styles.txt} value={hour} onChangeText={val => this.setState({ hour: val })}/>
           <TouchableOpacity style={styles.boton} 
           onPress={() => {console.log({name, description, date, hour});
-  
           }}>
+              
             <Text style={styles.titulo}>Guardar Tarea</Text>
           </TouchableOpacity>
         </View>
     ); 
-
-  }
-  
-  
-
-  
+  }  
 }
 const styles = StyleSheet.create({
     container: {
@@ -87,6 +97,9 @@ const styles = StyleSheet.create({
       justifyContent: 'center',
       alignItems: 'center',
       marginTop: 120,
+    },
+    imputtext: {
+        flexDirection: 'row',
     }
   });
   

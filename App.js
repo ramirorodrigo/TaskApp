@@ -1,5 +1,6 @@
 
 import * as React from 'react';
+import { useState } from "react";
 //import React, { Component } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator, CommonActions } from '@react-navigation/bottom-tabs'
@@ -15,7 +16,7 @@ import {
   TouchableOpacity,
   Button
 } from 'react-native';
-
+import List from './vista/createTask/lliista.js'
 import {
   Header,
   LearnMoreLinks,
@@ -30,18 +31,31 @@ function HomeScreen(props, TextInput) {
     <Navega/>
   );
 };
-function ListaScreen() {
-  return (
-    <View>
-      <Text>Home Screen
-      <VectorIcons name= "dribbble" size={24} color="black"/>
-      </Text>
+function ListaScreen(props, TextInput) {
+  const [tasknam, settasknam] = useState ([
+    {name: 'task 1', description: 'analisisar'},
+    {name: 'task 2', description: 'desarrollar'},
+    {name: 'task 3', description: 'complemntar'},
+    {name: 'Tarea 4', description: 'realizar'},
+    {name: 'tarea 5', description: 'cumplir'},
+]);
+return (
+    <View style={styles.container}>
+      <VectorIcons name= "open-book" size={24} color="green"/>
+        <Text style={styles.titulo}> LISTA DE TAREAS</Text>
+        <Text style={styles.titulo}> name: 'task 1', description: 'analisisar'</Text>
+        <Text style={styles.titulo}> name: 'task 2', description: 'desarrollar'</Text>
+        <Text style={styles.titulo}> name: 'task 3', description: 'complemntar</Text>
+        
     </View>
-  );
-}
+
+);
+};
 const Tab = createBottomTabNavigator()
 class App extends React.Component {
-  
+  constructor(props) {
+    super(props);
+  }
   render(navigation) {
     return(
       <NavigationContainer>
@@ -53,24 +67,24 @@ class App extends React.Component {
               case 'Home': {
                 if (focused) {
                   return (
-                    <VectorIcons name= "dribbble" size={24} color="black"/>
+                    <VectorIcons name= "layers" size={24} color="green"/>
                   );
                 }
                 else {
                   return (
-                    <VectorIcons name= "dribbble" size={24} color="red"/>
+                    <VectorIcons name= "layers" size={24} color="gray"/>
                   );
                 }
               }
               case 'Lista': {
                 if (focused) {
                   return (
-                    <VectorIcons name= "dribbble" size={24} color="black"/>
+                    <VectorIcons name= "open-book" size={24} color="green"/>
                   );
                 }
                 else {
                   return (
-                    <VectorIcons name= "dribbble" size={24} color="red"/>
+                    <VectorIcons name= "open-book" size={24} color="gray"/>
                   );
                 }
               }
@@ -114,6 +128,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: 150,
+  },
+  item: {
+    marginTop:'34',
+    paddingTop:'34',
+    backgroundColor: '#433520',
+    fontSize: 24,
+    marginHorizontal: 15,
   }
 });
 
